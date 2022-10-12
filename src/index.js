@@ -1,13 +1,13 @@
 var addon = require("bindings")("node-tspsolver");
 
-exports.solveTsp = function(costMatrix, roundtrip, options) {
+exports.solveTsp = function (costMatrix, roundtrip, options) {
   function error(message) {
     return Promise.reject(new Error(message));
   }
 
   if (
     !Array.isArray(costMatrix) ||
-    costMatrix.some(function(row) {
+    costMatrix.some(function (row) {
       return !Array.isArray(row) || row.length !== costMatrix.length;
     })
   ) {
@@ -15,7 +15,7 @@ exports.solveTsp = function(costMatrix, roundtrip, options) {
   }
 
   function validateCostMatrixElements(row) {
-    return row.some(function(val) {
+    return row.some(function (val) {
       return !Number.isFinite(val);
     });
   }
@@ -43,7 +43,7 @@ exports.solveTsp = function(costMatrix, roundtrip, options) {
       N: 1000000,
       T: 100,
       lambda: 0.985,
-      reheatInterval: 100000
+      reheatInterval: 100000,
     },
     Object(options)
   );
@@ -66,8 +66,8 @@ exports.solveTsp = function(costMatrix, roundtrip, options) {
     opts.reheatInterval = opts.N / 2;
   }
 
-  return new Promise(function(resolve, reject) {
-    return addon.solveTsp(costMatrix, roundtrip, opts, function(err, result) {
+  return new Promise(function (resolve, reject) {
+    return addon.solveTsp(costMatrix, roundtrip, opts, function (err, result) {
       if (err) {
         reject(err);
       } else {

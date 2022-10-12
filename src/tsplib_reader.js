@@ -28,7 +28,7 @@ function readLocations(data) {
     locations.push({
       id: parseInt(objs[0]),
       x: parseFloat(objs[1]),
-      y: parseFloat(objs[2])
+      y: parseFloat(objs[2]),
     });
   }
 
@@ -52,5 +52,5 @@ function euc2D(l1, l2) {
 }
 
 module.exports = {
-  read: readLocations
+  read: readLocations,
 };
